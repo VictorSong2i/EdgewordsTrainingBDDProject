@@ -13,6 +13,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.time.Duration;
 
 public class CartPOM {
     WebDriver driver;
@@ -74,13 +75,7 @@ public class CartPOM {
     public void checkout() throws InterruptedException {
         //Click checkout button
         Helpers scrollDown = new Helpers(driver);
-        Thread.sleep(3000); //Sleep for 3 seconds, NEED TO FIND WAY TO IMPLEMENT IMPLICIT WAIT
         scrollDown.scroll(driver, checkoutButton); //Scroll to button
-        checkoutButton.click();
-
-
-//        scrollDown.waitForElementAndText(10, By.cssSelector(".cart-discount > th"), "Coupon: edgewords");
-//        Duration timeOut = Duration.ofSeconds(10);
-//        scrollDown.waitForClickableButton(By.cssSelector(".checkout-button"), timeOut);
+        scrollDown.waitForClickableButton(By.cssSelector(".checkout-button"), Duration.ofSeconds(4));
     }
 }

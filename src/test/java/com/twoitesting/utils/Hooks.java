@@ -1,14 +1,13 @@
 package com.twoitesting.utils;
 
 import com.twoitesting.pompages.shoppingmenus.LoginPOM;
-import com.twoitesting.pompages.shoppingmenus.MainMenuPOM;
 import com.twoitesting.pompages.shoppingmenus.TaskBarMenuPOM;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-public class TestBase {
+public class Hooks {
 
     public WebDriver driver; //Field in scope for all methods in this test class
 

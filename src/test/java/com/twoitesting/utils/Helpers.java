@@ -1,7 +1,5 @@
 package com.twoitesting.utils;
 
-import java.time.Duration;
-
 import org.openqa.selenium.*;
 import org.openqa.selenium.io.FileHandler;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -48,6 +46,7 @@ public class Helpers {
         //Wait for button to be clickable
         WebDriverWait wait = new WebDriverWait(driver, timeOutInSec);
         wait.until(ExpectedConditions.elementToBeClickable(locator));
+        driver.findElement(locator).click();
     }
 
     public void TakePageScreenshot(String fileName) {
@@ -68,7 +67,8 @@ public class Helpers {
         TakesScreenshot ssdriver = (TakesScreenshot) driver.findElement(locator);
         File pageScreenshot = ssdriver.getScreenshotAs(OutputType.FILE);
         try {
-            FileHandler.copy(pageScreenshot, new File("D:\\Screenshots\\" + fileName + ".png"));
+            FileHandler.copy(pageScreenshot, new File("C:\\Users\\VictorSong\\Documents\\IntelliJ Project" +
+                    "\\twoitesting\\target\\screenshots" + fileName + ".png"));
         } catch (IOException e) {
             System.out.printf("Failed to write screenshot");
         }

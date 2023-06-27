@@ -3,11 +3,11 @@ import com.twoitesting.pompages.placegorder.CartPOM;
 import com.twoitesting.pompages.placegorder.PlacedOrderPOM;
 import com.twoitesting.pompages.shoppingmenus.ShopPOM;
 import com.twoitesting.pompages.shoppingmenus.TaskBarMenuPOM;
-import com.twoitesting.utils.TestBase;
+import com.twoitesting.utils.Hooks;
 import org.junit.jupiter.api.*;
 
 
-public class EdgewordsShopTest extends TestBase {
+public class EdgewordsShopTest extends Hooks {
 
     @Test
     void placeOrderBeanie() throws InterruptedException {

@@ -61,6 +61,7 @@ public class BillingPOM {
     public BillingPOM screenshotOrder(){
         //Screenshot order placed
         Helpers screenshot = new Helpers(driver);
+        screenshot.waitForElementAndText(4,By.cssSelector("[class=\"entry-header\"]"),"Order received");
         screenshot.TakeWebElementScreenshot("Order-Received", By.id("main"));
         return this;
     }
