@@ -1,4 +1,4 @@
-package com.twoitesting.pompages.placegorder;
+package com.twoitesting.pompages.placeorder;
 
 import com.twoitesting.utils.Helpers;
 import org.hamcrest.Matchers;
@@ -8,11 +8,11 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.time.Duration;
 
 public class CartPOM {
     WebDriver driver;
@@ -71,16 +71,11 @@ public class CartPOM {
         assertThat(sum, Matchers.comparesEqualTo(totalCost));
     }
 
-    public void checkout() throws InterruptedException {
+    public void checkout() {
         //Click checkout button
         Helpers scrollDown = new Helpers(driver);
-        Thread.sleep(3000); //Sleep for 3 seconds, NEED TO FIND WAY TO IMPLEMENT IMPLICIT WAIT
+        scrollDown.waitForClickableButton(By.cssSelector(".checkout-button"), Duration.ofSeconds(4));
         scrollDown.scroll(driver, checkoutButton); //Scroll to button
         checkoutButton.click();
-
-
-//        scrollDown.waitForElementAndText(10, By.cssSelector(".cart-discount > th"), "Coupon: edgewords");
-//        Duration timeOut = Duration.ofSeconds(10);
-//        scrollDown.waitForClickableButton(By.cssSelector(".checkout-button"), timeOut);
     }
 }

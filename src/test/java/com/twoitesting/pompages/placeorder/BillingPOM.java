@@ -1,4 +1,4 @@
-package com.twoitesting.pompages.placegorder;
+package com.twoitesting.pompages.placeorder;
 
 import com.twoitesting.utils.Helpers;
 import org.openqa.selenium.By;
@@ -6,6 +6,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+
+import java.time.Duration;
 
 public class BillingPOM {
 
@@ -54,6 +56,7 @@ public class BillingPOM {
         //Place order
         Helpers scrollDown = new Helpers(driver);
         scrollDown.scroll(driver, placeOrderIn);
+        scrollDown.waitForClickableButton(By.id("place_order"), Duration.ofSeconds(5)); //Waits for button to be clickable
         checkPaymentsIn.click();
         placeOrderIn.click();
     }
@@ -61,6 +64,7 @@ public class BillingPOM {
     public BillingPOM screenshotOrder(){
         //Screenshot order placed
         Helpers screenshot = new Helpers(driver);
+        screenshot.waitForElementAndText(4,By.cssSelector("[class=\"entry-header\"]"),"Order received");
         screenshot.TakeWebElementScreenshot("Order-Received", By.id("main"));
         return this;
     }

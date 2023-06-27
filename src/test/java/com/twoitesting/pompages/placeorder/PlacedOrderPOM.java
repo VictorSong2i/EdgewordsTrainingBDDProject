@@ -1,7 +1,6 @@
-package com.twoitesting.pompages.placegorder;
+package com.twoitesting.pompages.placeorder;
 
 import com.twoitesting.utils.Helpers;
-import org.junit.jupiter.api.Test;
 import com.twoitesting.pompages.shoppingmenus.TaskBarMenuPOM;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;

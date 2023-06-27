@@ -1,16 +1,30 @@
-import com.twoitesting.pompages.placegorder.BillingPOM;
-import com.twoitesting.pompages.placegorder.CartPOM;
-import com.twoitesting.pompages.placegorder.PlacedOrderPOM;
+package com.twoitesting;
+
+import com.twoitesting.pompages.placeorder.BillingPOM;
+import com.twoitesting.pompages.placeorder.CartPOM;
+import com.twoitesting.pompages.placeorder.PlacedOrderPOM;
+import com.twoitesting.pompages.shoppingmenus.LoginPOM;
 import com.twoitesting.pompages.shoppingmenus.ShopPOM;
 import com.twoitesting.pompages.shoppingmenus.TaskBarMenuPOM;
-import com.twoitesting.utils.TestBase;
+import com.twoitesting.utils.Hooks;
 import org.junit.jupiter.api.*;
+import org.openqa.selenium.WebDriver;
 
 
-public class EdgewordsShopTest extends TestBase {
+public class EdgewordsShopTest extends Hooks{
 
     @Test
-    void placeOrderBeanie() throws InterruptedException {
+    void placeOrderBeanie() {
+
+        //Login
+        TaskBarMenuPOM home = new TaskBarMenuPOM(driver);
+        home.myAccountClick(); //Access login page
+
+        //Login with details
+        LoginPOM login = new LoginPOM(driver);
+        login.setUsername("victor.song@2itesting.com")
+                .setPassword("Edgewords123456?")
+                .submitForm();
 
         //Accessing shop
         TaskBarMenuPOM topMenu = new TaskBarMenuPOM(driver);

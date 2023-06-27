@@ -1,36 +1,30 @@
 package com.twoitesting.utils;
 
 import com.twoitesting.pompages.shoppingmenus.LoginPOM;
-import com.twoitesting.pompages.shoppingmenus.MainMenuPOM;
 import com.twoitesting.pompages.shoppingmenus.TaskBarMenuPOM;
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-public class TestBase {
+public class Hooks {
 
-    public WebDriver driver; //Field in scope for all methods in this test class
+    public WebDriver driver;
 
     @BeforeEach
-    void login(){
+    public void setUp() {
         driver = new ChromeDriver(); //Initiate chrome
         driver.get("https://www.edgewordstraining.co.uk/demo-site/"); //Access shop webpage
-
-        //Login
-        TaskBarMenuPOM home = new TaskBarMenuPOM(driver);
-        home.myAccountClick(); //Access login page
-
-        //Login with details
-        LoginPOM login = new LoginPOM(driver);
-        login.setUsername("victor.song@2itesting.com")
-                .setPassword("Edgewords123456?")
-                .submitForm();
+        driver.manage().window().maximize();
     }
-
-    @AfterEach
+    @AfterEach //Quits driver after each test
     void tearDown () throws InterruptedException{
-        Thread.sleep(3000); //Sleep 3 seconds
+        Thread.sleep(4000); //Sleep 4 seconds for tester visibility
         driver.quit(); //Close Chrome and ChromeDriver
     }
 }

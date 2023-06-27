@@ -39,5 +39,4 @@ public class LoginPOM {
     public void submitForm(){
         submitButton.click();
     } //Submit username and password
-
 }
