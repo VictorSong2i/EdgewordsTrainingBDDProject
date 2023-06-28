@@ -61,11 +61,10 @@ public class BillingPOM {
         placeOrderIn.click();
     }
 
-    public BillingPOM screenshotOrder(){
-        //Screenshot order placed
+    public void screenshotOrder(){
+        //Screenshot order placed after waiting for order to appear on screen
         Helpers screenshot = new Helpers(driver);
-        screenshot.waitForElementAndText(4,By.cssSelector("[class=\"entry-header\"]"),"Order received");
+        screenshot.waitForVisibleElement(By.cssSelector("[class=\"woocommerce-order\"]"),Duration.ofSeconds(4));
         screenshot.TakeWebElementScreenshot("Order-Received", By.id("main"));
-        return this;
     }
 }

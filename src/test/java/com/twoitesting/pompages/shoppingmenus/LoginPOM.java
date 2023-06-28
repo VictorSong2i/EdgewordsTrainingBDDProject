@@ -12,7 +12,6 @@ public class LoginPOM {
     public LoginPOM(WebDriver driver) { //Constructor to accept the driver from the test
         this.driver = driver;
         PageFactory.initElements(driver, this);
-        //assertThat(driver.getTitle()=="Login", is(true)); //As an exception to "dont assert in the POM" you may choose to "sanity" check you are on the right page and crash out if not.
     }
 
     //Web elements in login page

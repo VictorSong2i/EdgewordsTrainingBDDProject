@@ -1,18 +1,11 @@
 package com.twoitesting.utils;
 
-import com.twoitesting.pompages.shoppingmenus.LoginPOM;
-import com.twoitesting.pompages.shoppingmenus.TaskBarMenuPOM;
-import io.cucumber.java.en.Given;
-import io.cucumber.java.en.Then;
-import io.cucumber.java.en.When;
-import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-public class Hooks {
+public class HooksNoSteps {
 
     public WebDriver driver;
 

@@ -1,7 +1,6 @@
 package com.twoitesting.pompages.placeorder;
 
 import com.twoitesting.utils.Helpers;
-import org.hamcrest.Matchers;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -9,6 +8,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import static org.hamcrest.MatcherAssert.assertThat;
+import org.hamcrest.Matchers;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -23,10 +23,6 @@ public class CartPOM {
     }
 
     //Web elements in cart page
-    @FindBy(linkText = "Proceed to checkout")
-    WebElement checkout;
-    @FindBy(css = ".coupon-edgewords>td>span")
-    WebElement discountNum;
     @FindBy(css = "[placeholder='Coupon code']")
     WebElement couponCode;
     @FindBy(css = "[name = 'apply_coupon']")
@@ -49,7 +45,10 @@ public class CartPOM {
 
         couponCode.sendKeys(code);
         couponApply.click();
-        scrollDown.waitForElementAndText(3, By.cssSelector("[class=\"cart-discount coupon-edgewords\"] >th"),"Coupon: edgewords");
+
+        //Waits for coupon discount to be visible before continuing
+        scrollDown.waitForVisibleElement(By.cssSelector("[class=\"cart-discount coupon-edgewords\"] >th")
+                , Duration.ofSeconds(4));
         return this;
     }
 
@@ -72,7 +71,7 @@ public class CartPOM {
     }
 
     public void checkout() {
-        //Click checkout button
+        //Verify checkout button is clibale before clicking checkout button
         Helpers scrollDown = new Helpers(driver);
         scrollDown.waitForClickableButton(By.cssSelector(".checkout-button"), Duration.ofSeconds(4));
         scrollDown.scroll(driver, checkoutButton); //Scroll to button

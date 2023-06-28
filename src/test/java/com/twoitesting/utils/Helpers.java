@@ -4,7 +4,6 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.io.FileHandler;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.openqa.selenium.io.FileHandler;
 
 import java.io.File;
 import java.io.IOException;
@@ -36,18 +35,22 @@ public class Helpers {
         return null;
     }
 
-    public Helpers scroll(WebDriver driver, WebElement element) {
+    public void scroll(WebDriver driver, WebElement element) {
         //Scroll down the page till the element is found
         JavascriptExecutor js = (JavascriptExecutor) driver; //initiate js driver for js script
         js.executeScript("arguments[0].scrollIntoView();", element);
-        return this;
     }
 
     public void waitForClickableButton(By locator, Duration timeOutInSec){
         //Wait for button to be clickable
         WebDriverWait wait = new WebDriverWait(driver, timeOutInSec);
         wait.until(ExpectedConditions.elementToBeClickable(locator));
-        driver.findElement(locator).click();
+    }
+
+    public void waitForVisibleElement(By locator, Duration timeOutInSec){
+        //Wait for element to be visible
+        WebDriverWait wait = new WebDriverWait(driver, timeOutInSec);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
     }
 
     public void TakePageScreenshot(String fileName) {
@@ -59,19 +62,19 @@ public class Helpers {
             //Commit the file to disk
             FileHandler.copy(pageScreenshot, new File("D:\\Screenshots\\" + fileName + ".png"));
         } catch (IOException e) {
-            System.out.printf("Failed to write screenshot"); //Output error message
+            System.out.print("Failed to write screenshot"); //Output error message
         }
     }
 
     public void TakeWebElementScreenshot(String fileName, By locator) {
         //Take screenshot of Web element
-        TakesScreenshot ssdriver = (TakesScreenshot) driver.findElement(locator);
+        TakesScreenshot ssdriver = driver.findElement(locator);
         File pageScreenshot = ssdriver.getScreenshotAs(OutputType.FILE);
         try {
             FileHandler.copy(pageScreenshot, new File("C:\\Users\\VictorSong\\Documents\\IntelliJ Project" +
-                    "\\twoitesting\\target\\screenshots" + fileName + ".png"));
+                    "\\twoitesting\\target\\screenshots " + fileName + ".png"));
         } catch (IOException e) {
-            System.out.printf("Failed to write screenshot");
+            System.out.print("Failed to write screenshot");
         }
     }
 }
