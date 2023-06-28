@@ -53,18 +53,18 @@ public class Helpers {
         wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
     }
 
-    public void TakePageScreenshot(String fileName) {
-        //Take page screenshot
-        TakesScreenshot ssdriver = (TakesScreenshot) driver;
-        File pageScreenshot = ssdriver.getScreenshotAs(OutputType.FILE); //Store screenshot as file in memory
-
-        try {
-            //Commit the file to disk
-            FileHandler.copy(pageScreenshot, new File("D:\\Screenshots\\" + fileName + ".png"));
-        } catch (IOException e) {
-            System.out.print("Failed to write screenshot"); //Output error message
-        }
-    }
+//    public void TakePageScreenshot(String fileName) {
+//        //Take page screenshot
+//        TakesScreenshot ssdriver = (TakesScreenshot) driver;
+//        File pageScreenshot = ssdriver.getScreenshotAs(OutputType.FILE); //Store screenshot as file in memory
+//
+//        try {
+//            //Commit the file to disk
+//            FileHandler.copy(pageScreenshot, new File("D:\\Screenshots\\" + fileName + ".png"));
+//        } catch (IOException e) {
+//            System.out.print("Failed to write screenshot"); //Output error message
+//        }
+//    }
 
     public void TakeWebElementScreenshot(String fileName, By locator) {
         //Take screenshot of Web element
