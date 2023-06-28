@@ -47,6 +47,7 @@ public class Helpers {
         //Wait for button to be clickable
         WebDriverWait wait = new WebDriverWait(driver, timeOutInSec);
         wait.until(ExpectedConditions.elementToBeClickable(locator));
+        driver.findElement(locator).click();
     }
 
     public void TakePageScreenshot(String fileName) {
