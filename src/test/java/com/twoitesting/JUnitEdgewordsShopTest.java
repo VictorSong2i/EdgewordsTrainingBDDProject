@@ -6,11 +6,11 @@ import com.twoitesting.pompages.placeorder.PlacedOrderPOM;
 import com.twoitesting.pompages.shoppingmenus.LoginPOM;
 import com.twoitesting.pompages.shoppingmenus.ShopPOM;
 import com.twoitesting.pompages.shoppingmenus.TaskBarMenuPOM;
-import com.twoitesting.utils.HooksNoSteps;
+import com.twoitesting.utils.JUnitHooks;
 import org.junit.jupiter.api.*;
 
 
-public class EdgewordsShopTest extends HooksNoSteps {
+public class JUnitEdgewordsShopTest extends JUnitHooks {
 
     @Test
     void placeOrderBeanie() {

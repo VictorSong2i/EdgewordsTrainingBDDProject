@@ -29,42 +29,49 @@ public class BillingPOM {
     WebElement cityIn;
     @FindBy(id = "billing_postcode")
     WebElement postcodeIn;
-    @FindBy(id="billing_phone")
+    @FindBy(id = "billing_phone")
     WebElement phoneIn;
-    @FindBy(id="billing_email")
+    @FindBy(id = "billing_email")
     WebElement emailIn;
-    @FindBy(css="[for=\"payment_method_cheque\"]")
+    @FindBy(css = "[for=\"payment_method_cheque\"]")
     WebElement checkPaymentsIn;
-    @FindBy(id="place_order")
+    @FindBy(id = "place_order")
     WebElement placeOrderIn;
 
     public BillingPOM sendBillingDetails(String firstName, String lastName, String streetAddress,
-                                         String city, String postcode, String phone,String email){
-        //input billing details in text boxes after clearing
+                                         String city, String postcode, String phone, String email) {
 
-        firstNameIn.clear(); firstNameIn.sendKeys(firstName);
-        lastNameIn.clear(); lastNameIn.sendKeys(lastName);
-        streetAddress1In.clear(); streetAddress1In.sendKeys(streetAddress);
-        cityIn.clear();cityIn.sendKeys(city);
-        postcodeIn.clear(); postcodeIn.sendKeys(postcode);
-        phoneIn.clear(); phoneIn.sendKeys(phone);
-        emailIn.clear(); emailIn.sendKeys(email);
+        //input billing details in
+        firstNameIn.clear();
+        firstNameIn.sendKeys(firstName);
+        lastNameIn.clear();
+        lastNameIn.sendKeys(lastName);
+        streetAddress1In.clear();
+        streetAddress1In.sendKeys(streetAddress);
+        cityIn.clear();
+        cityIn.sendKeys(city);
+        postcodeIn.clear();
+        postcodeIn.sendKeys(postcode);
+        phoneIn.clear();
+        phoneIn.sendKeys(phone);
+        emailIn.clear();
+        emailIn.sendKeys(email);
         return this;
     }
 
-    public void placeOrder(){
-        //Place order
+    public void placeOrder() {
+        //Place order using check payments method
         Helpers scrollDown = new Helpers(driver);
-        scrollDown.scroll(driver, placeOrderIn);
+        scrollDown.scroll(driver, placeOrderIn); //Scroll down to element
         scrollDown.waitForClickableButton(By.id("place_order"), Duration.ofSeconds(5)); //Waits for button to be clickable
         checkPaymentsIn.click();
         placeOrderIn.click();
     }
 
-    public void screenshotOrder(){
-        //Screenshot order placed after waiting for order to appear on screen
+    public void screenshotOrder() {
+        //Screenshot order placed after waiting for order to appear
         Helpers screenshot = new Helpers(driver);
-        screenshot.waitForVisibleElement(By.cssSelector("[class=\"woocommerce-order\"]"),Duration.ofSeconds(4));
+        screenshot.waitForVisibleElement(By.cssSelector("[class=\"woocommerce-order\"]"), Duration.ofSeconds(4));
         screenshot.TakeWebElementScreenshot("Order-Received", By.id("main"));
     }
 }

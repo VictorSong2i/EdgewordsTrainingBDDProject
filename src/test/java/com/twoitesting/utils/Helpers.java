@@ -41,13 +41,13 @@ public class Helpers {
         js.executeScript("arguments[0].scrollIntoView();", element);
     }
 
-    public void waitForClickableButton(By locator, Duration timeOutInSec){
+    public void waitForClickableButton(By locator, Duration timeOutInSec) {
         //Wait for button to be clickable
         WebDriverWait wait = new WebDriverWait(driver, timeOutInSec);
         wait.until(ExpectedConditions.elementToBeClickable(locator));
     }
 
-    public void waitForVisibleElement(By locator, Duration timeOutInSec){
+    public void waitForVisibleElement(By locator, Duration timeOutInSec) {
         //Wait for element to be visible
         WebDriverWait wait = new WebDriverWait(driver, timeOutInSec);
         wait.until(ExpectedConditions.visibilityOfElementLocated(locator));

@@ -8,13 +8,13 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 
-public class ShopPOM{
+public class ShopPOM {
     WebDriver driver;
 
     //Web elements in shop page
     @FindBy(css = "[aria-label='Add “Beanie” to your cart']") //Beanie
     WebElement beanie;
-    @FindBy(css="[title='View cart']")
+    @FindBy(css = "[title='View cart']")
     WebElement viewCart;
     @FindBy(css = "[aria-label='Add “Cap” to your cart']")
     WebElement cap;
@@ -24,19 +24,18 @@ public class ShopPOM{
         PageFactory.initElements(driver, this); //Page factory will scan page for annotated locators whenever they are accessed
     }
 
-    public ShopPOM beanie_cl(){
+    public ShopPOM beanie_cl() {
         //add beanie to cart
         Helpers scrollDown = new Helpers(driver);
-        scrollDown.scroll(driver, beanie);
+        scrollDown.scroll(driver, beanie); //Scroll to element
         beanie.click();
         return this;
     }
 
-    public ShopPOM viewCart(){
+    public void viewCart() {
         //Click on view cart
         Helpers scrollDown = new Helpers(driver);
-        scrollDown.waitForElementAndText(3,By.cssSelector("[title='View cart']"), "View cart");
+        scrollDown.waitForElementAndText(3, By.cssSelector("[title='View cart']"), "View cart");
         viewCart.click();
-        return this;
     }
 }

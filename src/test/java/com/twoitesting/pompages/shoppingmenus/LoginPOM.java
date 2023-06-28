@@ -7,7 +7,7 @@ import org.openqa.selenium.support.PageFactory;
 
 public class LoginPOM {
 
-    WebDriver driver; //Field to hold driver for methods in this class
+    WebDriver driver;
 
     public LoginPOM(WebDriver driver) { //Constructor to accept the driver from the test
         this.driver = driver;
@@ -22,20 +22,19 @@ public class LoginPOM {
     @FindBy(css = "button[name='login']")
     WebElement submitButton;
 
-    //Service Methods
-    public LoginPOM setUsername(String username){
+    public LoginPOM setUsername(String username) {
         usernameField.clear();
-        usernameField.sendKeys(username);
-        return this; //By returning *this* instance of the class, your test can chain method calls.
-    }
-
-    public LoginPOM setPassword(String password){
-        passwordField.clear();
-        passwordField.sendKeys(password);
+        usernameField.sendKeys(username); //Enter username details
         return this;
     }
 
-    public void submitForm(){
+    public LoginPOM setPassword(String password) {
+        passwordField.clear();
+        passwordField.sendKeys(password); //Enter password details
+        return this;
+    }
+
+    public void submitForm() {
         submitButton.click();
     } //Submit username and password
 }

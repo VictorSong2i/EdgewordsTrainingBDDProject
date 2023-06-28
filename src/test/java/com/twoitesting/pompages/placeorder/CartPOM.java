@@ -8,6 +8,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import static org.hamcrest.MatcherAssert.assertThat;
+
 import org.hamcrest.Matchers;
 
 import java.math.BigDecimal;
@@ -41,7 +42,7 @@ public class CartPOM {
     public CartPOM addCoupon(String code) {
         //Apply coupon discount code
         Helpers scrollDown = new Helpers(driver);
-        scrollDown.scroll(driver, couponCode);
+        scrollDown.scroll(driver, couponCode); //Scroll down to element
 
         couponCode.sendKeys(code);
         couponApply.click();
@@ -63,18 +64,20 @@ public class CartPOM {
         BigDecimal discountNum = new BigDecimal("0.15");
         assertThat(subtotalCost.multiply(discountNum).setScale(2, RoundingMode.HALF_EVEN)
                 , Matchers.comparesEqualTo(couponCost));
+        System.out.println("Discount assert successful");
 
         //Assert Total is correct
         BigDecimal sum = new BigDecimal(0);
         sum = sum.add(subtotalCost).subtract(couponCost).add(shippingCost);
         assertThat(sum, Matchers.comparesEqualTo(totalCost));
+        System.out.println("Total cost assert successful");
     }
 
     public void checkout() {
-        //Verify checkout button is clibale before clicking checkout button
+        //Verify checkout button is clickable before clicking checkout button
         Helpers scrollDown = new Helpers(driver);
         scrollDown.waitForClickableButton(By.cssSelector(".checkout-button"), Duration.ofSeconds(4));
-        scrollDown.scroll(driver, checkoutButton); //Scroll to button
+        scrollDown.scroll(driver, checkoutButton); //Scroll to element
         checkoutButton.click();
     }
 }
