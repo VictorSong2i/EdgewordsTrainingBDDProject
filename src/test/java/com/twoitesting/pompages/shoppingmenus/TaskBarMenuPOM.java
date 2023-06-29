@@ -31,8 +31,10 @@ public class TaskBarMenuPOM {
     }
 
     public void verifyLogIn() {
+        //Check login through checking if log out button is present
         Helpers verify = new Helpers(driver);
         verify.waitForClickableButton(By.linkText("Log out"), Duration.ofSeconds(3));
+        System.out.println("Victor is logged in");
     }
 
     public TaskBarMenuPOM myAccountClick() {
