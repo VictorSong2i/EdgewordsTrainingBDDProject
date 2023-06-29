@@ -38,6 +38,8 @@ public class CartPOM {
     WebElement total;
     @FindBy(css = ".checkout-button")
     WebElement checkoutButton;
+    @FindBy(linkText = "Dismiss")
+    WebElement dismiss;
 
     public CartPOM addCoupon(String code) {
         //Apply coupon discount code
@@ -74,10 +76,14 @@ public class CartPOM {
     }
 
     public void checkout() {
+
         //Verify checkout button is clickable before clicking checkout button
         Helpers scrollDown = new Helpers(driver);
-        scrollDown.waitForClickableButton(By.cssSelector(".checkout-button"), Duration.ofSeconds(4));
+        scrollDown.waitForClickableButton(By.linkText("Dismiss"), Duration.ofSeconds(4));
+        dismiss.click(); //Click dismiss button before continuing
+
         scrollDown.scroll(driver, checkoutButton); //Scroll to element
+        scrollDown.waitForClickableButton(By.cssSelector(".checkout-button"), Duration.ofSeconds(4));
         checkoutButton.click();
     }
 }
