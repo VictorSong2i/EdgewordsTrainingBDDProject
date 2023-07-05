@@ -78,7 +78,7 @@ public class Helpers {
             FileHandler.copy(pageScreenshot, new File("C:\\Users\\VictorSong\\Documents\\IntelliJ Project" +
                     "\\twoitesting\\target\\screenshots " + fileName + ".png"));
         } catch (IOException e) {
-            System.out.print("Failed to write screenshot");
+            System.out.println("Failed to write screenshot");
         }
     }
 }

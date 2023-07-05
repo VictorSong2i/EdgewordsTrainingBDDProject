@@ -81,7 +81,7 @@ public class CartPOM {
 
         //sleep for 2 seconds
         try {
-            Thread.sleep(2000);
+            Thread.sleep(1000);
         } catch (InterruptedException e) {
             System.out.println("Catch interruption");
         }
