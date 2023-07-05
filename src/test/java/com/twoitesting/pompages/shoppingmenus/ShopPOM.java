@@ -16,8 +16,6 @@ public class ShopPOM {
     WebElement beanie;
     @FindBy(css = "[title='View cart']")
     WebElement viewCart;
-    @FindBy(css = "[aria-label='Add “Cap” to your cart']")
-    WebElement cap;
 
     public ShopPOM(WebDriver driver) { //Constructor to accept the driver from the test
         this.driver = driver;
@@ -29,6 +27,15 @@ public class ShopPOM {
         Helpers scrollDown = new Helpers(driver);
         scrollDown.scroll(driver, beanie); //Scroll to element
         beanie.click();
+        return this;
+    }
+
+    public ShopPOM findItem_cl(String item){
+        //Add any item depending on user input
+        Helpers scrollDown = new Helpers(driver);
+        WebElement addItem = driver.findElement(By.cssSelector("[aria-label='Add “"+ item +"” to your cart']")); //Finds item
+        scrollDown.scroll(driver, addItem);
+        addItem.click();
         return this;
     }
 

@@ -53,6 +53,10 @@ public class Helpers {
         wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
     }
 
+//    public void waitForAutoScroll(){ //Wait for autoscroll function, NOT IMPLEMENTED
+//        WebDriverWait(driver, 5).until(EC.presence_of_element_located((By.CSS_SELECTOR, 'main:not([style*="margin-top"])')))
+//    }
+
 //    public void TakePageScreenshot(String fileName) {
 //        //Take page screenshot
 //        TakesScreenshot ssdriver = (TakesScreenshot) driver;

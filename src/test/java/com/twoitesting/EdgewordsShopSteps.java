@@ -24,15 +24,17 @@ public class EdgewordsShopSteps {
         this.driver = wdWrapper.getDriver(); //Uses web driver wrapper class to get driver
     }
 
-    @Given("I navigate to login page")
+    @Given("^(?:I|i) (?:navigate|go) to login page$")
     public void iNavigateToLoginPage() {
         //Login
         TaskBarMenuPOM home = new TaskBarMenuPOM(driver);
         home.myAccountClick(); //Access login page
     }
 
-    @When("I submit Victor's username and password")
-    public void iSubmitVictorSUsernameAndPassword() {
+    //Regex expression accepts any name and only for showing off, it will always log into Victor's account
+    @When("^(?:I|i) submit [a-zA-Z]{1,}(?:'s)? username and password$")
+    @When("^(?:I|i) log into Victor's account$")
+    public void iSubmitSUsernameAndPassword() {
         //Login with details
         LoginPOM login = new LoginPOM(driver);
         login.setUsername("victor.song@2itesting.com")
@@ -40,29 +42,36 @@ public class EdgewordsShopSteps {
                 .submitForm();
     }
 
-    @Then("I should be logged in")
+    @Then("^(?:I|i) should be logged in$")
     public void iShouldBeLoggedIn() {
         //Check user has logged in
         TaskBarMenuPOM checkLogin = new TaskBarMenuPOM(driver);
         checkLogin.verifyLogIn();
     }
 
-    @Given("I navigate to shop")
+    @Given("^(?:I|i) navigate to shop$")
     public void iNavigateToShop() {
         //Accessing shop
         TaskBarMenuPOM topMenu = new TaskBarMenuPOM(driver);
         topMenu.shopClick();
     }
 
-    @When("I add a beanie hat to cart")
+    @When("^(?:I|i) add a beanie hat to cart$")
     public void iAddBeanieToCart() {
         //Adding beanie to cart
         ShopPOM shop = new ShopPOM(driver);
         shop.beanie_cl().viewCart();
     }
 
-    @And("checkout with coupon code")
-    public void checkoutWithCouponCode(){
+    @When("I add an {string} to cart from shop menu")
+    public void iAddItemToCart(String item) {
+        //Add item to cart depending on user input
+        ShopPOM shop = new ShopPOM(driver);
+        shop.findItem_cl(item).viewCart();
+    }
+
+    @And("^checkout with coupon code$")
+    public void checkoutWithCouponCode() {
         //Apply coupon and navigate to checkout page
         CartPOM applyCoupon = new CartPOM(driver);
         applyCoupon.addCoupon("edgewords").couponCostCheck();
@@ -73,15 +82,26 @@ public class EdgewordsShopSteps {
         placeBillingOrder.sendBillingDetails("Victor", "Song", " 51 Little France Cres",
                         "Edinburgh", "EH16 4SA", "07829348271","victor.song@2itesting.com")
                 .placeOrder();
-
-        //Take screenshot of order placed
-        placeBillingOrder.screenshotOrder();
     }
 
-    @Then("Order should be placed and screenshot")
+
+    @Then("^Order should be placed and screenshot$")
     public void orderShouldBePlacedWithDiscount() {
         //Check order number is same from summary page and orders page
         PlacedOrderPOM checkOrder = new PlacedOrderPOM(driver);
+        checkOrder.screenshotOrder("Beanie"); //Take screenshot of order placed
+        checkOrder.checkOrderNum();
+
+        //logOut
+        TaskBarMenuPOM logOutPage = new TaskBarMenuPOM(driver);
+        logOutPage.logOut();
+    }
+
+    @Then("^(.*) order should be placed and screenshot$")
+    public void itemPlacedWithDiscount(String item) {
+        //Check order number is same from summary page and orders page
+        PlacedOrderPOM checkOrder = new PlacedOrderPOM(driver);
+        checkOrder.screenshotOrder(item);
         checkOrder.checkOrderNum();
 
         //logOut

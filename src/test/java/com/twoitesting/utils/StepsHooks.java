@@ -29,7 +29,7 @@ public class StepsHooks {
 
     @After //Quits driver after each scenario
     public void tearDown() throws InterruptedException {
-        Thread.sleep(4000); //Sleep 4 seconds for tester visibility
+//        Thread.sleep(4000); //Sleep 4 seconds for tester visibility
         driver.quit();
     }
 }

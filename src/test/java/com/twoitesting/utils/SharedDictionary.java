@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class SharedDictionary {
-    //Shared dictionary class used primarily for multithreading in conjunction with pico-container
+    //Shared dictionary class used primarily for multithreading in conjunction with pico-container injection
 
     //Define dictionary data type
     private final Map<String, Object> sharedMap = new HashMap<String, Object>();

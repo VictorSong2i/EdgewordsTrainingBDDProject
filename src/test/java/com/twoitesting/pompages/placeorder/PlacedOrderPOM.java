@@ -1,10 +1,14 @@
 package com.twoitesting.pompages.placeorder;
 
 import com.twoitesting.pompages.shoppingmenus.TaskBarMenuPOM;
+import com.twoitesting.utils.Helpers;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+
+import java.time.Duration;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
@@ -35,5 +39,12 @@ public class PlacedOrderPOM {
         String orderNumCompare = orderPage.getOrderNum();
         assertThat(orderSummary, equalTo(orderNumCompare));
         System.out.println("Order numbers match");
+    }
+
+    public void screenshotOrder(String item) {
+        //Screenshot order placed after waiting for order to appear
+        Helpers screenshot = new Helpers(driver);
+        screenshot.waitForVisibleElement(By.cssSelector("[class=\"woocommerce-order\"]"), Duration.ofSeconds(4));
+        screenshot.TakeWebElementScreenshot("Order-Received-"+item, By.id("main"));
     }
 }

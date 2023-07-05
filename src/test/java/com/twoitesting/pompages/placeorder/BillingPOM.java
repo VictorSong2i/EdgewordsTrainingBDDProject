@@ -42,20 +42,13 @@ public class BillingPOM {
                                          String city, String postcode, String phone, String email) {
 
         //input billing details in
-        firstNameIn.clear();
-        firstNameIn.sendKeys(firstName);
-        lastNameIn.clear();
-        lastNameIn.sendKeys(lastName);
-        streetAddress1In.clear();
-        streetAddress1In.sendKeys(streetAddress);
-        cityIn.clear();
-        cityIn.sendKeys(city);
-        postcodeIn.clear();
-        postcodeIn.sendKeys(postcode);
-        phoneIn.clear();
-        phoneIn.sendKeys(phone);
-        emailIn.clear();
-        emailIn.sendKeys(email);
+        firstNameIn.clear(); firstNameIn.sendKeys(firstName);
+        lastNameIn.clear(); lastNameIn.sendKeys(lastName);
+        streetAddress1In.clear(); streetAddress1In.sendKeys(streetAddress);
+        cityIn.clear(); cityIn.sendKeys(city);
+        postcodeIn.clear(); postcodeIn.sendKeys(postcode);
+        phoneIn.clear(); phoneIn.sendKeys(phone);
+        emailIn.clear(); emailIn.sendKeys(email);
         return this;
     }
 
@@ -63,15 +56,9 @@ public class BillingPOM {
         //Place order using check payments method
         Helpers scrollDown = new Helpers(driver);
         scrollDown.scroll(driver, placeOrderIn); //Scroll down to element
+        scrollDown.waitForVisibleElement(By.id("place_order"), Duration.ofSeconds(5)); //Waits for button to be visible
         scrollDown.waitForClickableButton(By.id("place_order"), Duration.ofSeconds(5)); //Waits for button to be clickable
         checkPaymentsIn.click();
         placeOrderIn.click();
-    }
-
-    public void screenshotOrder() {
-        //Screenshot order placed after waiting for order to appear
-        Helpers screenshot = new Helpers(driver);
-        screenshot.waitForVisibleElement(By.cssSelector("[class=\"woocommerce-order\"]"), Duration.ofSeconds(4));
-        screenshot.TakeWebElementScreenshot("Order-Received", By.id("main"));
     }
 }

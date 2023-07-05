@@ -44,11 +44,9 @@ public class JUnitEdgewordsShopTest extends JUnitHooks {
                 "Edinburgh", "EH16 4SA", "07829348271","victor.song@2itesting.com")
                 .placeOrder();
 
-        //Take screenshot of order placed
-        placeBillingOrder.screenshotOrder();
-
         //Check order number is same from summary page and orders page
         PlacedOrderPOM checkOrder = new PlacedOrderPOM(driver);
+        checkOrder.screenshotOrder("Beanie"); //Take screenshot of order placed
         checkOrder.checkOrderNum();
 
         //logOut
